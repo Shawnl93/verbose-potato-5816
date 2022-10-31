@@ -1,7 +1,7 @@
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.describe "customers show page" do
-  describe "When I visit the customer's show page" do
+RSpec.describe "item's index page" do
+  describe "When I visit the Item's index page" do
     before :each do
       @supermarket_1 = Supermarket.create!(name: "Shawn's Market", location: "123 Food St")
       @supermarket_2 = Supermarket.create!(name: "Lee's Market", location: "456 Food St")
@@ -15,31 +15,23 @@ RSpec.describe "customers show page" do
       @customer_item_5 = CustomerItem.create!(customer: @customer, item: @item_1)
       @customer_item_3 = CustomerItem.create!(customer: @customer_1, item: @item_3)
       @customer_item_2 = CustomerItem.create!(customer: @customer, item: @item_2)
-      visit "/customers/#{@customer.id}"
+      visit "/items"
     end
 
-    it "see customer's name and a list of it's items" do
-      expect(page).to have_content(@customer.name)
-      expect(page).to have_content(@item_1.name)
-      expect(page).to have_content(@item_2.name)
-      expect(page).to_not have_content(@item_3.name)
-    end
-
-    it "shows item's name price and the supermarket it belongs to" do
+    it "A list of all items and attributes" do
       expect(page).to have_content(@item_1.name)
       expect(page).to have_content(@item_1.price)
       expect(page).to have_content(@item_2.name)
       expect(page).to have_content(@item_2.price)
+      expect(page).to have_content(@item_3.name)
+      expect(page).to have_content(@item_3.price)
       expect(page).to have_content(@supermarket_1.name)
       expect(page).to have_content(@supermarket_2.name)
-      expect(page).to_not have_content(@item_3.name)
     end
 
-    it "has a form to add item to this customer" do
-      fill_in :item_id, with: @item_1.id
-      click_button "Submit"
-      expect(current_path).to eq("/customers/#{@customer.id}")
-      expect(page).to have_content(@item_1.name)
+    it "count the customer that bought that item" do
+      expect(page).to have_content("Number of Customers: 3")
+      expect(page).to have_content("Number of Customers: 1")
     end
   end
 end
