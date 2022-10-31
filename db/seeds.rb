@@ -13,7 +13,5 @@
 @item_2 = @supermarket_2.items.create!(name:"Apple", price: 2)
 @item_3 = @supermarket_1.items.create!(name:"Peach", price: 3)
 @customer_item_1 = CustomerItem.create!(customer: @customer, item: @item_1)
-@customer_item_4 = CustomerItem.create!(customer: @customer, item: @item_1)
-@customer_item_5 = CustomerItem.create!(customer: @customer, item: @item_1)
 @customer_item_3 = CustomerItem.create!(customer: @customer_1, item: @item_3)
 @customer_item_2 = CustomerItem.create!(customer: @customer, item: @item_2)
