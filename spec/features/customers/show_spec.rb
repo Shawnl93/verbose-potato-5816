@@ -29,6 +29,8 @@ RSpec.describe "customers show page" do
       expect(page).to have_content(@item_2.name)
       expect(page).to have_content(@item_2.price)
       expect(page).to have_content(@supermarket_1.name)
+      expect(page).to have_content(@supermarket_2.name)
+      expect(page).to_not have_content(@item_3.name)
     end
   end
 end
