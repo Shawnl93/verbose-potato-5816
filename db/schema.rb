@@ -26,29 +26,6 @@ ActiveRecord::Schema.define(version: 2022_10_31_151912) do
     t.string "name"
   end
 
-  create_table "departments", force: :cascade do |t|
-    t.string "name"
-    t.string "floor"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "employees", force: :cascade do |t|
-    t.string "name"
-    t.integer "level"
-    t.bigint "department_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["department_id"], name: "index_employees_on_department_id"
-  end
-
-  create_table "employeetickets", force: :cascade do |t|
-    t.bigint "employee_id"
-    t.bigint "ticket_id"
-    t.index ["employee_id"], name: "index_employeetickets_on_employee_id"
-    t.index ["ticket_id"], name: "index_employeetickets_on_ticket_id"
-  end
-
   create_table "items", force: :cascade do |t|
     t.string "name"
     t.integer "price"
@@ -65,15 +42,6 @@ ActiveRecord::Schema.define(version: 2022_10_31_151912) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "tickets", force: :cascade do |t|
-    t.string "subject"
-    t.integer "age"
-    t.boolean "open"
-  end
-
   add_foreign_key "customer_items", "customers"
   add_foreign_key "customer_items", "items"
-  add_foreign_key "employees", "departments"
-  add_foreign_key "employeetickets", "employees"
-  add_foreign_key "employeetickets", "tickets"
 end

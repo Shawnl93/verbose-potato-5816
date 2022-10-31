@@ -4,5 +4,10 @@
 <ul>
   <li><%= item.name %> <%= item.price %></li>
 </ul>
+<% end %>
 
+<%= form_with url: "/customers/#{@customer.id}", method: :post do |f| %>
+  <%= f.label "Enter the ID of a Item" %>
+  <%= f.number_field :item_id %>
+  <%= f.submit "Submit" %>
 <% end %>

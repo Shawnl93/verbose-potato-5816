@@ -5,3 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+@supermarket_1 = Supermarket.create!(name: "Shawn's Market", location: "123 Food St")
+@supermarket_2 = Supermarket.create!(name: "Lee's Market", location: "456 Food St")
+@customer = Customer.create!(name:"Shawn")
+@customer_1 = Customer.create!(name:"Lee")
+@item_1 = @supermarket_1.items.create!(name:"Banana", price: 1)
+@item_2 = @supermarket_2.items.create!(name:"Apple", price: 2)
+@item_3 = @supermarket_1.items.create!(name:"Peach", price: 3)
+@customer_item = CustomerItem.create!(customer: @customer, item: @item_1)
+@customer_item = CustomerItem.create!(customer: @customer, item: @item_2)
+@customer_item = CustomerItem.create!(customer: @customer_1, item: @item_3)

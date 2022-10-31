@@ -32,5 +32,12 @@ RSpec.describe "customers show page" do
       expect(page).to have_content(@supermarket_2.name)
       expect(page).to_not have_content(@item_3.name)
     end
+
+    it "has a form to add item to this customer" do
+      fill_in :item_id, with: @item_1.id
+      click_button "Submit"
+      expect(current_path).to eq("/customers/#{@customer.id}")
+      expect(page).to have_content(@item_1.name)
+    end
   end
 end
